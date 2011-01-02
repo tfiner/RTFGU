@@ -37,6 +37,8 @@ typedef boost::shared_ptr<IRenderer> RendererPtr;
 class Tracer;
 typedef boost::shared_ptr<Tracer> TracerPtr;
 
+typedef vector<GeometricObject*> Objects;
+
 class World {
 public:
     World();
@@ -54,7 +56,9 @@ public:
     RGBColor max_to_one(const RGBColor& c) const;
     RGBColor clamp_to_color(const RGBColor& c) const;
     void display_pixel(const int row, const int column, const RGBColor& pixel_color) const;
+
     ShadeRec hit_objects(const Ray& ray);
+    ShadeRec hit_bare_bones_objects(const Ray& ray) const;
 
     Light* get_ambient() const {
         return ambient_ptr;
@@ -63,13 +67,22 @@ public:
         return lights;
     }
 
+    void set_background(RGBColor color) {
+        background_color = color;
+    }
+
     RGBColor get_background() const {
         return background_color;
+    }
+
+    void set_viewplane(const ViewPlane& vp) {
+        this->vp = vp;
     }
 
     const ViewPlane& get_viewplane() const {
         return vp;
     }
+
     const TracerPtr get_tracer() const {
         return tracer;
     }
@@ -91,7 +104,7 @@ private:
     Light*   					ambient_ptr;
     Camera*						camera_ptr;
     Sphere 						sphere;		// for Chapter 3 only
-    vector<GeometricObject*>	objects;
+    Objects	                    objects;
     vector<Light*> 				lights;
 
     void delete_objects(void);

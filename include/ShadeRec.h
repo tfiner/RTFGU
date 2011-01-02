@@ -38,9 +38,9 @@ public:
     double				t;					// ray parameter
     float				u;					// texture coordinate
     float				v;					// texture coordinate
-    World&				w;					// world reference
+    const World&				w;					// world reference
 
-    ShadeRec(World& wr);
+    ShadeRec(const World& wr);
     ShadeRec(const ShadeRec& sr);
     ~ShadeRec();
 };

@@ -7,7 +7,7 @@ class World;
 
 class IBuilder {
 public:
-    virtual void build(World& world) = 0;
+    virtual void build(WorldPtr world) = 0;
 };
 typedef boost::shared_ptr<IBuilder> BuilderPtr;
 
