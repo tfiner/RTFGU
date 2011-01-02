@@ -15,33 +15,33 @@
 #include "GeometricObject.h"
 
 class OpenCylinder: public GeometricObject {
-	
-	public:
-		
-		OpenCylinder(void);   									
 
-		OpenCylinder(const double bottom, const double top, const double radius);
+public:
 
-		OpenCylinder(const OpenCylinder& c); 					
-		
-		virtual OpenCylinder* 									
-		clone (void) const;
+    OpenCylinder(void);
 
-		OpenCylinder& 											
-		operator= (const OpenCylinder& rhs);		
-		
-		virtual 												
-		~OpenCylinder(void);
-						
-		virtual bool
-		hit(const Ray& ray, double& t, ShadeRec& sr) const;
-		
-	protected:
-	
-		double		y0;				// bottom y value
-		double		y1;				// top y value
-		double		radius;			// radius
-		double		inv_radius;  	// one over the radius	
+    OpenCylinder(const double bottom, const double top, const double radius);
+
+    OpenCylinder(const OpenCylinder& c);
+
+    virtual OpenCylinder*
+    clone (void) const;
+
+    OpenCylinder&
+    operator= (const OpenCylinder& rhs);
+
+    virtual
+    ~OpenCylinder(void);
+
+    virtual bool
+    hit(const Ray& ray, double& t, ShadeRec& sr) const;
+
+protected:
+
+    double		y0;				// bottom y value
+    double		y1;				// top y value
+    double		radius;			// radius
+    double		inv_radius;  	// one over the radius
 };
 
 #endif

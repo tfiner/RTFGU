@@ -11,27 +11,27 @@
 #include "Sampler.h"
 
 class PureRandom: public Sampler {
-	public:
-		
-		PureRandom(void);							
-		
-		PureRandom(const int num);					
+public:
 
-		PureRandom(const PureRandom& r);				
+    PureRandom(void);
 
-		PureRandom& 
-		operator= (const PureRandom& rhs);			
+    PureRandom(const int num);
 
-		virtual PureRandom*							
-		clone(void) const;			
+    PureRandom(const PureRandom& r);
 
-		virtual
-		~PureRandom(void);
-		
-	private:
-		
-		virtual void
-		generate_samples(void);
+    PureRandom&
+    operator= (const PureRandom& rhs);
+
+    virtual PureRandom*
+    clone(void) const;
+
+    virtual
+    ~PureRandom(void);
+
+private:
+
+    virtual void
+    generate_samples(void);
 };
 
 #endif

@@ -10,24 +10,24 @@
 
 // 2D points are used to store sample points
 
-class Point2D {	
-	public:
-	
-		float x, y;
-				
-	public:
-	
-		Point2D(void);										
-		Point2D(const float arg);							
-		Point2D(const float x1, const float y1);			
-		Point2D(const Point2D& p); 						
-		~Point2D(void);									
+class Point2D {
+public:
 
-		Point2D& 											
-		operator= (const Point2D& rhs);
-		
-		Point2D							
-		operator* (const float a);
+    float x, y;
+
+public:
+
+    Point2D(void);
+    Point2D(const float arg);
+    Point2D(const float x1, const float y1);
+    Point2D(const Point2D& p);
+    ~Point2D(void);
+
+    Point2D&
+    operator= (const Point2D& rhs);
+
+    Point2D
+    operator* (const float a);
 };
 
 
@@ -35,7 +35,7 @@ class Point2D {
 
 inline Point2D
 Point2D::operator* (const float a) {
-	return (Point2D(x * a, y * a));
+    return (Point2D(x * a, y * a));
 }
 
 #endif

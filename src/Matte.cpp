@@ -9,25 +9,23 @@
 // ---------------------------------------------------------------- default constructor
 
 Matte::Matte (void)
-	:	Material(),
-		ambient_brdf(new Lambertian),
-		diffuse_brdf(new Lambertian)
-{}
+        :	Material(),
+        ambient_brdf(new Lambertian),
+        diffuse_brdf(new Lambertian) {}
 
 
 
 // ---------------------------------------------------------------- copy constructor
 
 Matte::Matte(const Matte& m)
-	: 	Material(m)
-{
-	if(m.ambient_brdf)
-		ambient_brdf = m.ambient_brdf->clone();
-	else  ambient_brdf = NULL;
+        : 	Material(m) {
+    if (m.ambient_brdf)
+        ambient_brdf = m.ambient_brdf->clone();
+    else  ambient_brdf = NULL;
 
-	if(m.diffuse_brdf)
-		diffuse_brdf = m.diffuse_brdf->clone();
-	else  diffuse_brdf = NULL;
+    if (m.diffuse_brdf)
+        diffuse_brdf = m.diffuse_brdf->clone();
+    else  diffuse_brdf = NULL;
 }
 
 
@@ -35,7 +33,7 @@ Matte::Matte(const Matte& m)
 
 Material*
 Matte::clone(void) const {
-	return (new Matte(*this));
+    return (new Matte(*this));
 }
 
 
@@ -43,28 +41,28 @@ Matte::clone(void) const {
 
 Matte&
 Matte::operator= (const Matte& rhs) {
-	if (this == &rhs)
-		return (*this);
+    if (this == &rhs)
+        return (*this);
 
-	Material::operator=(rhs);
+    Material::operator=(rhs);
 
-	if (ambient_brdf) {
-		delete ambient_brdf;
-		ambient_brdf = NULL;
-	}
+    if (ambient_brdf) {
+        delete ambient_brdf;
+        ambient_brdf = NULL;
+    }
 
-	if (rhs.ambient_brdf)
-		ambient_brdf = rhs.ambient_brdf->clone();
+    if (rhs.ambient_brdf)
+        ambient_brdf = rhs.ambient_brdf->clone();
 
-	if (diffuse_brdf) {
-		delete diffuse_brdf;
-		diffuse_brdf = NULL;
-	}
+    if (diffuse_brdf) {
+        delete diffuse_brdf;
+        diffuse_brdf = NULL;
+    }
 
-	if (rhs.diffuse_brdf)
-		diffuse_brdf = rhs.diffuse_brdf->clone();
+    if (rhs.diffuse_brdf)
+        diffuse_brdf = rhs.diffuse_brdf->clone();
 
-	return (*this);
+    return (*this);
 }
 
 
@@ -72,15 +70,15 @@ Matte::operator= (const Matte& rhs) {
 
 Matte::~Matte(void) {
 
-	if (ambient_brdf) {
-		delete ambient_brdf;
-		ambient_brdf = NULL;
-	}
+    if (ambient_brdf) {
+        delete ambient_brdf;
+        ambient_brdf = NULL;
+    }
 
-	if (diffuse_brdf) {
-		delete diffuse_brdf;
-		diffuse_brdf = NULL;
-	}
+    if (diffuse_brdf) {
+        delete diffuse_brdf;
+        diffuse_brdf = NULL;
+    }
 }
 
 
@@ -88,22 +86,22 @@ Matte::~Matte(void) {
 
 RGBColor
 Matte::shade(ShadeRec& sr) {
-	Vector3D 	wo 			= -sr.ray.d;
-	RGBColor 	L 			= ambient_brdf->rho(sr, wo) *
-                                sr.w.get_ambient()->L(sr);
+    Vector3D 	wo 			= -sr.ray.d;
+    RGBColor 	L 			= ambient_brdf->rho(sr, wo) *
+                     sr.w.get_ambient()->L(sr);
 
     const vector<Light*>& lights = sr.w.get_lights();
-	int 		num_lights	= lights.size();
+    int 		num_lights	= lights.size();
 
-	for (int j = 0; j < num_lights; j++) {
-		Vector3D wi = lights[j]->get_direction(sr);
-		float ndotwi = sr.normal * wi;
+    for (int j = 0; j < num_lights; j++) {
+        Vector3D wi = lights[j]->get_direction(sr);
+        float ndotwi = sr.normal * wi;
 
-		if (ndotwi > 0.0)
-			L += diffuse_brdf->f(sr, wo, wi) * lights[j]->L(sr) * ndotwi;
-	}
+        if (ndotwi > 0.0)
+            L += diffuse_brdf->f(sr, wo, wi) * lights[j]->L(sr) * ndotwi;
+    }
 
-	return (L);
+    return (L);
 }
 
 

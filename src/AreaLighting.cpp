@@ -11,7 +11,7 @@
 
 
 AreaLighting::AreaLighting(WorldPtr _worldPtr)
-	: Tracer(_worldPtr) {}
+        : Tracer(_worldPtr) {}
 
 AreaLighting::~AreaLighting() {}
 
@@ -21,23 +21,23 @@ AreaLighting::~AreaLighting() {}
 RGBColor
 AreaLighting::trace_ray(const Ray ray, const int depth) const {
     return black;
-/*
-	if (depth > world_ptr->vp.max_depth)
-		return (black);
-	else {
-		ShadeRec sr(world_ptr->hit_objects(ray));
+    /*
+    	if (depth > world_ptr->vp.max_depth)
+    		return (black);
+    	else {
+    		ShadeRec sr(world_ptr->hit_objects(ray));
 
-		if (sr.hit_an_object) {
-			sr.depth = depth;
-			sr.ray = ray;
+    		if (sr.hit_an_object) {
+    			sr.depth = depth;
+    			sr.ray = ray;
 
-			return (sr.material_ptr->area_light_shade(sr));
-		}
-		else
-			return (world_ptr->background_color);
+    			return (sr.material_ptr->area_light_shade(sr));
+    		}
+    		else
+    			return (world_ptr->background_color);
 
-	}
-*/
+    	}
+    */
 }
 
 

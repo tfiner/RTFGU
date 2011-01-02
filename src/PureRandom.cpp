@@ -6,58 +6,57 @@
 #include "PureRandom.h"
 
 // ---------------------------------------------------------------- default constructor
-	
-PureRandom::PureRandom(void)							
-	: Sampler()
-{}
+
+PureRandom::PureRandom(void)
+        : Sampler() {}
 
 
 // ---------------------------------------------------------------- constructor
 
 PureRandom::PureRandom(const int num)
-	: Sampler(num) {
-	generate_samples();
+        : Sampler(num) {
+    generate_samples();
 }
 
 
 // ---------------------------------------------------------------- constructor
 
-PureRandom::PureRandom(const PureRandom& r)			
-	: Sampler(r) {
-	generate_samples();
+PureRandom::PureRandom(const PureRandom& r)
+        : Sampler(r) {
+    generate_samples();
 }
 
 // ---------------------------------------------------------------- assignment operator
 
-PureRandom& 
+PureRandom&
 PureRandom::operator= (const PureRandom& rhs) {
-	if (this == &rhs)
-		return (*this);
-		
-	Sampler::operator=(rhs);
+    if (this == &rhs)
+        return (*this);
 
-	return (*this);
+    Sampler::operator=(rhs);
+
+    return (*this);
 }
 
 // ---------------------------------------------------------------- clone
 
-PureRandom*										
+PureRandom*
 PureRandom::clone(void) const {
-	return (new PureRandom(*this));
+    return (new PureRandom(*this));
 }
 
-// ---------------------------------------------------------------- destructor			
+// ---------------------------------------------------------------- destructor
 
 PureRandom::~PureRandom(void) {}
 
 
-// ---------------------------------------------------------------- generate_samples	
+// ---------------------------------------------------------------- generate_samples
 
 void
 PureRandom::generate_samples(void) {
-	for (int p = 0; p < num_sets; p++)         
-		for (int q = 0; q < num_samples; q++)
-			samples.push_back(Point2D(rand_float(), rand_float()));
+    for (int p = 0; p < num_sets; p++)
+        for (int q = 0; q < num_samples; q++)
+            samples.push_back(Point2D(rand_float(), rand_float()));
 }
 
 

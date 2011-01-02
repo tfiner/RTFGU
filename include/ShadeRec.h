@@ -21,25 +21,28 @@ class World;
 #include "Ray.h"
 #include "RGBColor.h"
 
+#include <boost/shared_ptr.hpp>
+typedef boost::shared_ptr<Material> MaterialPtr;
+
 class ShadeRec {
-	public:
-	
-		bool				hit_an_object;		// did the ray hit an object?
-		Material* 			material_ptr;		// pointer to the nearest object's material
-		Point3D 			hit_point;			// world coordinates of intersection
-		Point3D				local_hit_point;	// world coordinates of hit point on untransformed object (used for texture transformations)
-		Normal				normal;				// normal at hit point
-		Ray					ray;				// required for specular highlights and area lights
-		int					depth;				// recursion depth
-		RGBColor			color;				// used in the Chapter 3 only
-		double				t;					// ray parameter
-		float				u;					// texture coordinate
-		float				v;					// texture coordinate
-		World&				w;					// world reference
-				
-		ShadeRec(World& wr);					// constructor
-		ShadeRec(const ShadeRec& sr);			// copy constructor
-		~ShadeRec(void);						// destructor
+public:
+
+    bool				hit_an_object;		// did the ray hit an object?
+    MaterialPtr 		material_ptr;		// pointer to the nearest object's material
+    Point3D 			hit_point;			// world coordinates of intersection
+    Point3D				local_hit_point;	// world coordinates of hit point on untransformed object (used for texture transformations)
+    Normal				normal;				// normal at hit point
+    Ray					ray;				// required for specular highlights and area lights
+    int					depth;				// recursion depth
+    RGBColor			color;				// used in the Chapter 3 only
+    double				t;					// ray parameter
+    float				u;					// texture coordinate
+    float				v;					// texture coordinate
+    World&				w;					// world reference
+
+    ShadeRec(World& wr);
+    ShadeRec(const ShadeRec& sr);
+    ~ShadeRec();
 };
 
 #endif

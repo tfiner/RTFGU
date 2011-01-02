@@ -1,0 +1,6 @@
+*\.orig
+.DS_Store
+rtfgu.depend
+rtfgu.layout
+bin/*
+obj/*

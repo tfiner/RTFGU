@@ -56,16 +56,30 @@ public:
     void display_pixel(const int row, const int column, const RGBColor& pixel_color) const;
     ShadeRec hit_objects(const Ray& ray);
 
-    Light* get_ambient() const { return ambient_ptr; }
-    const vector<Light*>& get_lights() const { return lights; }
+    Light* get_ambient() const {
+        return ambient_ptr;
+    }
+    const vector<Light*>& get_lights() const {
+        return lights;
+    }
 
-    RGBColor get_background() const { return background_color; }
+    RGBColor get_background() const {
+        return background_color;
+    }
 
-    const ViewPlane& get_viewplane() const { return vp; }
-    const TracerPtr get_tracer() const { return tracer; }
+    const ViewPlane& get_viewplane() const {
+        return vp;
+    }
+    const TracerPtr get_tracer() const {
+        return tracer;
+    }
 
-    void set_sphere( const Sphere& sphere ) { this->sphere = sphere; }
-    const Sphere& get_sphere() const { return sphere; }
+    void set_sphere( const Sphere& sphere ) {
+        this->sphere = sphere;
+    }
+    const Sphere& get_sphere() const {
+        return sphere;
+    }
 
 private:
     RendererPtr                 renderer;

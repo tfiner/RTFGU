@@ -1,7 +1,8 @@
 #ifndef __AMBIENT__
 #define __AMBIENT__
 
-// 	Copyright (C) Kevin Suffern 2000-2007.
+
+// 	Copyright (C) Kevin Suffern 2000-2007.
 //	This C++ code is for non-commercial purposes only.
 //	This C++ code is licensed under the GNU General Public License Version 2.
 //	See the file COPYING.txt for the full license.
@@ -10,43 +11,43 @@
 #include "Light.h"
 
 class Ambient: public Light {
-	public:
-	
-		Ambient(void);   							
+public:
 
-		Ambient(const Ambient& a); 					 
-	
-		virtual Light* 									
-		clone(void) const;	
-		
-		Ambient& 									
-		operator= (const Ambient& rhs);									
-		
-		virtual 									
-		~Ambient(void);
-				
-		void
-		scale_radiance(const float b);
-		
-		void
-		set_color(const float c);
-		
-		void
-		set_color(const RGBColor& c);
-		
-		void
-		set_color(const float r, const float g, const float b); 
-		
-		virtual Vector3D								
-		get_direction(ShadeRec& s); 
-		
-		virtual RGBColor
-		L(ShadeRec& s);
-	
-	private:
-	
-		float		ls;
-		RGBColor	color;
+    Ambient(void);
+
+    Ambient(const Ambient& a);
+
+    virtual Light*
+    clone(void) const;
+
+    Ambient&
+    operator= (const Ambient& rhs);
+
+    virtual
+    ~Ambient(void);
+
+    void
+    scale_radiance(const float b);
+
+    void
+    set_color(const float c);
+
+    void
+    set_color(const RGBColor& c);
+
+    void
+    set_color(const float r, const float g, const float b);
+
+    virtual Vector3D
+    get_direction(ShadeRec& s);
+
+    virtual RGBColor
+    L(ShadeRec& s);
+
+private:
+
+    float		ls;
+    RGBColor	color;
 };
 
 
@@ -55,15 +56,17 @@ class Ambient: public Light {
 // ------------------------------------------------------------------------------- scale_radiance
 
 inline void
-Ambient::scale_radiance(const float b) { 
-	ls = b;
+Ambient::scale_radiance(const float b) {
+    ls = b;
 }
 
 // ------------------------------------------------------------------------------- set_color
 
 inline void
 Ambient::set_color(const float c) {
-	color.r = c; color.g = c; color.b = c;
+    color.r = c;
+    color.g = c;
+    color.b = c;
 }
 
 
@@ -71,7 +74,7 @@ Ambient::set_color(const float c) {
 
 inline void
 Ambient::set_color(const RGBColor& c) {
-	color = c;
+    color = c;
 }
 
 
@@ -79,9 +82,11 @@ Ambient::set_color(const RGBColor& c) {
 
 inline void
 Ambient::set_color(const float r, const float g, const float b) {
-	color.r = r; color.g = g; color.b = b;
+    color.r = r;
+    color.g = g;
+    color.b = b;
 }
 
 
 #endif
-
+

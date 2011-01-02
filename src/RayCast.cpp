@@ -15,12 +15,12 @@ RayCast::~RayCast() {}
 // this ignores the depth argument
 
 RGBColor RayCast::trace_ray(const Ray ray, const int depth) const {
-	ShadeRec sr(world_ptr->hit_objects(ray));
+    ShadeRec sr(world_ptr->hit_objects(ray));
 
-	if (sr.hit_an_object) {
-		sr.ray = ray;			// used for specular shading
-		return (sr.material_ptr->shade(sr));
-	}
+    if (sr.hit_an_object) {
+        sr.ray = ray;			// used for specular shading
+        return (sr.material_ptr->shade(sr));
+    }
 
     return world_ptr->get_background();
 }

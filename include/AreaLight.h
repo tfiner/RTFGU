@@ -49,9 +49,8 @@ public:
     pdf(const ShadeRec& sr) const;
 
 private:
-
     GeometricObject* 	object_ptr;
-    Material* 			material_ptr;	 // will be an emissive material
+    MaterialPtr 		material_ptr;	 // will be an emissive material
     Point3D				sample_point;
     Normal				light_normal;    // assigned in get_direction - which therefore can't be const for any light
     Vector3D			wi;			     // unit direction from hit point being shaded to sample point on light surface
@@ -61,8 +60,7 @@ private:
 
 // --------------------------------------------------------------- set_object
 
-inline void
-AreaLight::set_object(GeometricObject* obj_ptr) {
+inline void AreaLight::set_object(GeometricObject* obj_ptr) {
     object_ptr = obj_ptr;
     material_ptr = object_ptr->get_material();
 }

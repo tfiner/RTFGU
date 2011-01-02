@@ -6,83 +6,82 @@
 #include "Hammersley.h"
 #include "Maths.h"
 
-//extern float 
+//extern float
 //rand_float(void);
 
 // ---------------------------------------------------------------- default constructor
-	
-Hammersley::Hammersley(void)							
-	: 	Sampler()
-{}
+
+Hammersley::Hammersley(void)
+        : 	Sampler() {}
 
 
 // ---------------------------------------------------------------- constructor
 
 Hammersley::Hammersley(const int num)
-	: 	Sampler(num) {
-	generate_samples();
+        : 	Sampler(num) {
+    generate_samples();
 }
 
 
 // ---------------------------------------------------------------- copy constructor
 
-Hammersley::Hammersley(const Hammersley& h)			
-	: 	Sampler(h) {
-	generate_samples();
+Hammersley::Hammersley(const Hammersley& h)
+        : 	Sampler(h) {
+    generate_samples();
 }
 
 // ---------------------------------------------------------------- assignment operator
 
-Hammersley& 
+Hammersley&
 Hammersley::operator= (const Hammersley& rhs) {
-	if (this == &rhs)
-		return (*this);
-		
-	Sampler::operator=(rhs);
+    if (this == &rhs)
+        return (*this);
 
-	return (*this);
+    Sampler::operator=(rhs);
+
+    return (*this);
 }
 
 
 // ---------------------------------------------------------------- clone
 
-Hammersley*										
+Hammersley*
 Hammersley::clone(void) const {
-	return (new Hammersley(*this));
+    return (new Hammersley(*this));
 }
 
 
-// ---------------------------------------------------------------- destructor			
+// ---------------------------------------------------------------- destructor
 
 Hammersley::~Hammersley(void) {}
 
 
 // ---------------------------------------------------------------- phi
- 
-double 
+
+double
 Hammersley::phi(int j) {
-	double x = 0.0;
-	double f = 0.5; 
-	
-	while (j) {
-		x += f * (double) (j % 2);
-		j /= 2;
-		f *= 0.5; 
-	}
-	
-	return (x);
+    double x = 0.0;
+    double f = 0.5;
+
+    while (j) {
+        x += f * (double) (j % 2);
+        j /= 2;
+        f *= 0.5;
+    }
+
+    return (x);
 }
 
 
-// ---------------------------------------------------------------- generate_samples	
+// ---------------------------------------------------------------- generate_samples
 
 void
 Hammersley::generate_samples(void) {
-	for (int p = 0; p < num_sets; p++)		
-		for (int j = 0; j < num_samples; j++) {
-			Point2D pv((float) j / (float) num_samples, phi(j));
-			samples.push_back(pv);
-		}		
+    for (int p = 0; p < num_sets; p++)
+        for (int j = 0; j < num_samples; j++) {
+            Point2D pv((float) j / (float) num_samples, phi(j));
+            samples.push_back(pv);
+        }
 }
 
 

@@ -11,29 +11,29 @@
 #include "Sampler.h"
 
 class NRooks: public Sampler {
-	public:
-		
-		NRooks(void);									
-		
-		NRooks(const int num_samples);					
-		
-		NRooks(const int num_samples, const int m);	
+public:
 
-		NRooks(const NRooks& nr);					
+    NRooks(void);
 
-		NRooks& 
-		operator= (const NRooks& rhs);				
+    NRooks(const int num_samples);
 
-		virtual NRooks*								
-		clone(void) const;			
+    NRooks(const int num_samples, const int m);
 
-		virtual
-		~NRooks(void);
-		
-	private:
-		
-		virtual void									
-		generate_samples(void);						
+    NRooks(const NRooks& nr);
+
+    NRooks&
+    operator= (const NRooks& rhs);
+
+    virtual NRooks*
+    clone(void) const;
+
+    virtual
+    ~NRooks(void);
+
+private:
+
+    virtual void
+    generate_samples(void);
 };
 
 #endif

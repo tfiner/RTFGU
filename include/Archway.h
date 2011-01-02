@@ -10,10 +10,10 @@
 // This file contains the declaration of the class Archway
 // This is a door with a semi-circular arch at the top
 // The door sides are beveled boxes, and the arch is beveled wedges
-// An un-transformed archway is parallel to the (x, z) plane with its 
+// An un-transformed archway is parallel to the (x, z) plane with its
 // minimum (x, y, z) corner at the origin
 
-// The parameters are: 
+// The parameters are:
 //					width - x dimension
 //					height - y dimension
 //					depth - z dimension
@@ -29,39 +29,39 @@
 //-------------------------------------------------------------------------------- class Archway
 
 class Archway: public Grid {
-	public:
-	
-		Archway(	const double width,		
-					const double height,		
-					const double depth,	
-					const double column_width,
-					const double num_blocks,
-					const double num_wedges,
-					const double rb);		
-								
-		Archway(const Archway& aw); 				
-		
-		virtual Archway* 								
-		clone(void) const;
+public:
 
-		virtual Archway& 								
-		operator= (const Archway& rhs);		
-		
-		virtual 											
-		~Archway(void);  
-		
-		void
-		construct_archway(void);
-				
-	private:
-	
-		double 	width;		
-		double 	height;		
-		double 	depth;	
-		double 	column_width;
-		int 	num_blocks;
-		int 	num_wedges;
-		double 	rb;
+    Archway(	const double width,
+             const double height,
+             const double depth,
+             const double column_width,
+             const double num_blocks,
+             const double num_wedges,
+             const double rb);
+
+    Archway(const Archway& aw);
+
+    virtual Archway*
+    clone(void) const;
+
+    virtual Archway&
+    operator= (const Archway& rhs);
+
+    virtual
+    ~Archway(void);
+
+    void
+    construct_archway(void);
+
+private:
+
+    double 	width;
+    double 	height;
+    double 	depth;
+    double 	column_width;
+    int 	num_blocks;
+    int 	num_wedges;
+    double 	rb;
 };
 
 #endif

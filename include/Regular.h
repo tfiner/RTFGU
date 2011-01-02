@@ -11,25 +11,25 @@
 #include "Sampler.h"
 
 class Regular: public Sampler {
-	public:
-		
-		Regular(void);							
-		
-		Regular(const int num);					
+public:
 
-		Regular(const Regular& u);				
+    Regular(void);
 
-		Regular& 
-		operator= (const Regular& rhs);			
+    Regular(const int num);
 
-		virtual Regular*						
-		clone(void) const;			
+    Regular(const Regular& u);
 
-		virtual
-		~Regular(void);
-		
-		virtual void
-		generate_samples(void);
+    Regular&
+    operator= (const Regular& rhs);
+
+    virtual Regular*
+    clone(void) const;
+
+    virtual
+    ~Regular(void);
+
+    virtual void
+    generate_samples(void);
 };
 
 #endif

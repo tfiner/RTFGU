@@ -14,43 +14,42 @@
 //-------------------------------------------------------------------------------- class Compound
 
 class Compound: public GeometricObject {
-	public:
+public:
 
-		Compound(void);
+    Compound(void);
 
-		virtual Compound*
-		clone(void) const;
+    virtual Compound*
+    clone(void) const;
 
-		Compound(const Compound& c);
+    Compound(const Compound& c);
 
-		~Compound (void);
+    ~Compound (void);
 
-		Compound&
-		operator= (const Compound& c);
+    Compound&
+    operator= (const Compound& c);
 
-		virtual void
-		set_material(Material* material_ptr);
+    virtual void set_material(MaterialPtr material_ptr);
 
-		virtual void
-		add_object(GeometricObject* object_ptr);
+    virtual void
+    add_object(GeometricObject* object_ptr);
 
-		int
-		get_num_objects(void);
+    int
+    get_num_objects(void);
 
-		virtual bool
-		hit(const Ray& ray, double& tmin, ShadeRec& s) const;
+    virtual bool
+    hit(const Ray& ray, double& tmin, ShadeRec& s) const;
 
-	protected:
+protected:
 
-		std::vector<GeometricObject*> objects;
+    std::vector<GeometricObject*> objects;
 
-	private:
+private:
 
-		void
-		delete_objects(void);
+    void
+    delete_objects(void);
 
-		void
-		copy_objects(const std::vector<GeometricObject*>& rhs_objects);
+    void
+    copy_objects(const std::vector<GeometricObject*>& rhs_objects);
 
 };
 
@@ -59,7 +58,7 @@ class Compound: public GeometricObject {
 
 inline int
 Compound::get_num_objects(void) {
-	return (objects.size());
+    return (objects.size());
 }
 
 #endif

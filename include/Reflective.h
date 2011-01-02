@@ -13,38 +13,38 @@
 #include "PerfectSpecular.h"
 
 class Reflective: public Phong {
-	public:
+public:
 
-		Reflective(void);
+    Reflective(void);
 
-		Reflective(const Reflective& rm);
+    Reflective(const Reflective& rm);
 
-		Reflective&
-		operator= (const Reflective& rhs);
+    Reflective&
+    operator= (const Reflective& rhs);
 
-		virtual Reflective*
-		clone(void) const;
+    virtual Reflective*
+    clone(void) const;
 
-		~Reflective(void);
+    ~Reflective(void);
 
-		void
-		set_kr(const float k);
+    void
+    set_kr(const float k);
 
-		void
-		set_cr(const RGBColor& c);
+    void
+    set_cr(const RGBColor& c);
 
-		void
-		set_cr(const float r, const float g, const float b);
+    void
+    set_cr(const float r, const float g, const float b);
 
-		void
-		set_cr(const float c);
+    void
+    set_cr(const float c);
 
-		virtual RGBColor
-		shade(ShadeRec& s);
+    virtual RGBColor
+    shade(ShadeRec& s);
 
-	private:
+private:
 
-		PerfectSpecular* reflective_brdf;
+    PerfectSpecular* reflective_brdf;
 };
 
 
@@ -52,7 +52,7 @@ class Reflective: public Phong {
 
 inline void
 Reflective::set_kr(const float k) {
-	reflective_brdf->set_kr(k);
+    reflective_brdf->set_kr(k);
 }
 
 
@@ -60,7 +60,7 @@ Reflective::set_kr(const float k) {
 
 inline void
 Reflective::set_cr(const RGBColor& c) {
-	reflective_brdf->set_cr(c);
+    reflective_brdf->set_cr(c);
 
 }
 
@@ -69,7 +69,7 @@ Reflective::set_cr(const RGBColor& c) {
 
 inline void
 Reflective::set_cr(const float r, const float g, const float b) {
-	reflective_brdf->set_cr(r, g, b);
+    reflective_brdf->set_cr(r, g, b);
 }
 
 
@@ -77,7 +77,7 @@ Reflective::set_cr(const float r, const float g, const float b) {
 
 inline void
 Reflective::set_cr(const float c) {
-	reflective_brdf->set_cr(c);
+    reflective_brdf->set_cr(c);
 }
 
 #endif

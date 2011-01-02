@@ -7,8 +7,8 @@
 //	See the file COPYING.txt for the full license.
 
 // BRDF is the base class for the BRDFs
-// we need a sampler here, because even a Matte material needs to call sample_f with a 
-// cosine distribution for path shading. 
+// we need a sampler here, because even a Matte material needs to call sample_f with a
+// cosine distribution for path shading.
 
 //#include <math.h>
 
@@ -18,41 +18,41 @@
 #include "Sampler.h"
 
 class BRDF {
-	public:
-	
-		BRDF(void);						
-		
-		BRDF(const BRDF& brdf);		
-		
-		virtual BRDF*
-		clone(void)const = 0;
-		
-		BRDF&							
-		operator= (const BRDF& rhs);
-		
-		virtual
-		~BRDF(void);
-				
-		void							
-		set_sampler(Sampler* sPtr);
-		
-		virtual RGBColor
-		f(const ShadeRec& sr, const Vector3D& wo, const Vector3D& wi) const;
-		
-		virtual RGBColor
-		sample_f(const ShadeRec& sr, const Vector3D& wo, Vector3D& wi) const;
-		
-		virtual RGBColor
-		sample_f(const ShadeRec& sr, const Vector3D& wo, Vector3D& wi, float& pdf) const;
-		
-		virtual RGBColor
-		rho(const ShadeRec& sr, const Vector3D& wo) const;
-		
-			
-	protected:
-	
-		Sampler* sampler_ptr;		// for indirect illumination
+public:
+
+    BRDF(void);
+
+    BRDF(const BRDF& brdf);
+
+    virtual BRDF*
+    clone(void)const = 0;
+
+    BRDF&
+    operator= (const BRDF& rhs);
+
+    virtual
+    ~BRDF(void);
+
+    void
+    set_sampler(Sampler* sPtr);
+
+    virtual RGBColor
+    f(const ShadeRec& sr, const Vector3D& wo, const Vector3D& wi) const;
+
+    virtual RGBColor
+    sample_f(const ShadeRec& sr, const Vector3D& wo, Vector3D& wi) const;
+
+    virtual RGBColor
+    sample_f(const ShadeRec& sr, const Vector3D& wo, Vector3D& wi, float& pdf) const;
+
+    virtual RGBColor
+    rho(const ShadeRec& sr, const Vector3D& wo) const;
+
+
+protected:
+
+    Sampler* sampler_ptr;		// for indirect illumination
 };
 
 #endif
-
+

@@ -11,31 +11,31 @@
 
 #include "MeshTriangle.h"
 
-class SmoothMeshTriangle: public MeshTriangle {		
-	public:
-		
-		SmoothMeshTriangle(void);   									
-		
-		SmoothMeshTriangle(Mesh* _meshPtr, const int i0, const int i1, const int i2);		
+class SmoothMeshTriangle: public MeshTriangle {
+public:
 
-		virtual SmoothMeshTriangle* 										
-		clone(void) const;
-	
-		SmoothMeshTriangle(const SmoothMeshTriangle& fmt); 					
+    SmoothMeshTriangle(void);
 
-		virtual
-		~SmoothMeshTriangle(void);   									
+    SmoothMeshTriangle(Mesh* _meshPtr, const int i0, const int i1, const int i2);
 
-		SmoothMeshTriangle& 												
-		operator= (const SmoothMeshTriangle& rhs);
-				
-		virtual	bool 
-		hit(const Ray& ray, double& tmin, ShadeRec& sr) const; 																	
+    virtual SmoothMeshTriangle*
+    clone(void) const;
 
-	protected:
-	
-		Normal 
-		interpolate_normal(const float beta, const float gamma) const;
+    SmoothMeshTriangle(const SmoothMeshTriangle& fmt);
+
+    virtual
+    ~SmoothMeshTriangle(void);
+
+    SmoothMeshTriangle&
+    operator= (const SmoothMeshTriangle& rhs);
+
+    virtual	bool
+    hit(const Ray& ray, double& tmin, ShadeRec& sr) const;
+
+protected:
+
+    Normal
+    interpolate_normal(const float beta, const float gamma) const;
 };
 
 #endif

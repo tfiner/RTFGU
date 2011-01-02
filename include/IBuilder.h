@@ -12,15 +12,4 @@ public:
 typedef boost::shared_ptr<IBuilder> BuilderPtr;
 
 
-class IBuilderFactory {
-public:
-    virtual BuilderPtr create() = 0;
-};
-
-
-typedef boost::shared_ptr<IBuilderFactory> BuilderFactoryPtr;
-
-void setBuilderFactory( BuilderFactoryPtr );
-BuilderPtr getBuilder(); // factory
-
 #endif // IBUILDER_H_INCLUDED

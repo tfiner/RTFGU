@@ -19,29 +19,29 @@ Light::Light(const Light& ls) {}
 
 // ---------------------------------------------------------------------- assignment operator
 
-Light& 
+Light&
 Light::operator= (const Light& rhs) {
-	if (this == &rhs)
-		return (*this);
+    if (this == &rhs)
+        return (*this);
 
-	return (*this);
+    return (*this);
 }
 
 
 // ---------------------------------------------------------------------- destructor
 
-Light::~Light(void) {} 
+Light::~Light(void) {}
 
 
 
 // ---------------------------------------------------------------------- L
 // returns the radiance
 
-RGBColor								
+RGBColor
 Light::L(ShadeRec& s) {
-	return (black);
+    return (black);
 }
 
 
 
-
+
