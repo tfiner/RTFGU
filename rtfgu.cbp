@@ -117,7 +117,6 @@
 		<Unit filename="src/GlossySpecular.cpp" />
 		<Unit filename="src/Grid.cpp" />
 		<Unit filename="src/Hammersley.cpp" />
-		<Unit filename="src/IBuilder.cpp" />
 		<Unit filename="src/Instance.cpp" />
 		<Unit filename="src/Jittered.cpp" />
 		<Unit filename="src/Lambertian.cpp" />

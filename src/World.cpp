@@ -43,6 +43,13 @@
 
 #include <stdexcept>
 
+namespace {
+
+    const float ZW = 100.0f;
+
+}
+
+
 // -------------------------------------------------------------------- default constructor
 
 // tracer_ptr is set to NULL because the build functions will always construct the appropriate tracer
@@ -93,19 +100,26 @@ void World::render_scene() const {
 
     RGBColor	pixel_color;
     Ray			ray;
-    int 		hres 	= vp.hres;
-    int 		vres 	= vp.vres;
-    float		s		= vp.s;
-    float		zw		= 100.0;				// hardwired in
-
     ray.d = Vector3D(0, 0, -1);
+    const int N = static_cast<int>(sqrt(static_cast<float>(vp.num_samples)));
 
-    for (int r = 0; r < vres; r++)			// up
-        for (int c = 0; c <= hres; c++) {	// across
-            ray.o = Point3D(s * (c - hres / 2.0 + 0.5), s * (r - vres / 2.0 + 0.5), zw);
-            pixel_color = tracer->trace_ray(ray);
+    for (int r = 0; r < vp.vres; r++) {
+        for (int c = 0; c <= vp.hres; c++) {
+            pixel_color = background_color;
+
+            // Samples
+            for ( int p = 0; p < N; p++ ) {
+                for ( int q = 0; q < N; q++ ) {
+                    float nx = vp.s * (c - 0.5f * vp.hres + (q + 0.5f) / N);
+                    float ny = vp.s * (r - 0.5f * vp.vres + (p + 0.5f) / N);
+                    ray.o = Point3D(nx, ny, ZW);
+                    pixel_color += tracer->trace_ray(ray);
+                }
+            }
+            pixel_color /= vp.num_samples;
             display_pixel(r, c, pixel_color);
         }
+    }
 }
 
 
