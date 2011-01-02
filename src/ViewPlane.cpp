@@ -1,6 +1,7 @@
 // This file contains the definition the ViewPlane class
 
 #include "ViewPlane.h"
+#include "Sampler.h"
 
 // ---------------------------------------------------------------- default constructor
 
@@ -11,7 +12,8 @@ ViewPlane::ViewPlane(void)
         num_samples(1),
         gamma(1.0),
         inv_gamma(1.0),
-        show_out_of_gamut(false) {}
+        show_out_of_gamut(false),
+        sampler_(SamplerPtr(new Regular)) {}
 
 
 // ---------------------------------------------------------------- copy constructor
@@ -23,7 +25,8 @@ ViewPlane::ViewPlane(const ViewPlane& vp)
         num_samples(vp.num_samples),
         gamma(vp.gamma),
         inv_gamma(vp.inv_gamma),
-        show_out_of_gamut(vp.show_out_of_gamut) {}
+        show_out_of_gamut(vp.show_out_of_gamut),
+        sampler_(SamplerPtr(new Regular)) {}
 
 
 // ---------------------------------------------------------------- assignment operator

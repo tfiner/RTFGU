@@ -60,6 +60,10 @@ public:
     ShadeRec hit_objects(const Ray& ray);
     ShadeRec hit_bare_bones_objects(const Ray& ray) const;
 
+    void set_ambient(Light* light) {
+        ambient_ptr = light;
+    }
+
     Light* get_ambient() const {
         return ambient_ptr;
     }

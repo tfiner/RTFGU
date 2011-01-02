@@ -1,7 +1,12 @@
 #ifndef __VIEW_PLANE__
 #define __VIEW_PLANE__
 
-//-------------------------------------------------------------------------------------- class ViewPlane
+#include <boost/shared_ptr.hpp>
+
+
+class Sampler;
+typedef boost::shared_ptr<Sampler> SamplerPtr;
+
 
 class ViewPlane {
 public:
@@ -43,6 +48,11 @@ public:
 
     void
     set_samples(const int n);
+
+    void set_sampler( SamplerPtr sampler );
+
+private:
+    SamplerPtr sampler_;
 };
 
 
@@ -95,5 +105,10 @@ inline void
 ViewPlane::set_samples(const int n) {
     num_samples = n;
 }
+
+inline void ViewPlane::set_sampler( SamplerPtr sampler ) {
+    sampler_ = sampler;
+}
+
 
 #endif
