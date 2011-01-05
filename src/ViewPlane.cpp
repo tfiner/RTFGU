@@ -2,6 +2,7 @@
 
 #include "ViewPlane.h"
 #include "Sampler.h"
+#include "Regular.h"
 
 // ---------------------------------------------------------------- default constructor
 
