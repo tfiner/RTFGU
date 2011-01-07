@@ -52,7 +52,7 @@ public:
     void set_ambient_light(Light* light_ptr);
     void set_camera(Camera* c_ptr);
 
-    void render_scene() const;
+    void render_scene();
     RGBColor max_to_one(const RGBColor& c) const;
     RGBColor clamp_to_color(const RGBColor& c) const;
     void display_pixel(const int row, const int column, const RGBColor& pixel_color) const;

@@ -50,6 +50,7 @@ public:
     set_samples(const int n);
 
     void set_sampler( SamplerPtr sampler );
+    SamplerPtr get_sampler();
 
 private:
     SamplerPtr sampler_;
@@ -108,6 +109,10 @@ ViewPlane::set_samples(const int n) {
 
 inline void ViewPlane::set_sampler( SamplerPtr sampler ) {
     sampler_ = sampler;
+}
+
+inline SamplerPtr ViewPlane::get_sampler() {
+    return sampler_;
 }
 
 
