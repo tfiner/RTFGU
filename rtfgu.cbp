@@ -99,6 +99,7 @@
 		<Unit filename="include/ViewPlane.h" />
 		<Unit filename="include/Whitted.h" />
 		<Unit filename="include/World.h" />
+		<Unit filename="include/log.h" />
 		<Unit filename="include/ply.h" />
 		<Unit filename="src/Ambient.cpp" />
 		<Unit filename="src/Archway.cpp" />
