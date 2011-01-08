@@ -18,80 +18,55 @@
 class Sampler {
 public:
 
-    Sampler(void);
-
+    Sampler();
     Sampler(const int num);
-
     Sampler(const int num, const int num_sets);
-
     Sampler(const Sampler& s);
 
-    Sampler&
-    operator= (const Sampler& rhs);
+    Sampler& operator= (const Sampler& rhs);
 
-    virtual Sampler*
-    clone(void) const = 0;
+    virtual Sampler* clone() const = 0;
 
-    virtual
-    ~Sampler(void);
+    virtual ~Sampler();
 
-    void
-    set_num_sets(const int np);
+    void init(int num_samples, int num_sets);
 
-    virtual void							// generate sample patterns in a unit square
-    generate_samples(void) = 0;
+    // generate sample patterns in a unit square
+    virtual void generate_samples() = 0;
+    int get_num_samples();
 
-    int
-    get_num_samples(void);
+    void shuffle_x_coordinates();
+    void shuffle_y_coordinates();
+    void setup_shuffled_indices();
 
-    void
-    shuffle_x_coordinates(void);
-
-    void
-    shuffle_y_coordinates(void);
-
-    void
-    setup_shuffled_indices(void);
-
-    void
-    map_samples_to_unit_disk(void);
-
-    void
-    map_samples_to_hemisphere(const float p);
-
-    void
-    map_samples_to_sphere(void);
-
+//    void map_samples_to_unit_disk();
+    void map_samples_to_hemisphere(const float p);
+//    void map_samples_to_sphere();
 
     // the following functions are not const because they change count and jump
-
-    Point2D											// get next sample on unit square
-    sample_unit_square(void);
-
-    Point2D											// get next sample on unit disk
-    sample_unit_disk(void);
-
-    Point3D											// get next sample on unit hemisphere
-    sample_hemisphere(void);
-
-    Point3D											// get next sample on unit sphere
-    sample_sphere(void);
-
-    Point2D											// only used to set up a vector noise table
-    sample_one_set(void);							// this is not discussed in the book, but see the
+    Point2D sample_unit_square();
+//    Point2D	sample_unit_disk();
+    Point3D	sample_hemisphere();
+//    Point3D	sample_sphere();
+//    Point2D	sample_one_set();
+    // this is not discussed in the book, but see the
     // file LatticeNoise.cpp in Chapter 31
 
 protected:
-
     int 					num_samples;     		// the number of sample points in a set
     int 					num_sets;				// the number of sample sets
     std::vector<Point2D>	samples;				// sample points on a unit square
     std::vector<int>		shuffled_indices;		// shuffled samples array indices
-    std::vector<Point2D>	disk_samples;			// sample points on a unit disk
-    std::vector<Point3D> 	hemisphere_samples;		// sample points on a unit hemisphere
-    std::vector<Point3D>    sphere_samples;			// sample points on a unit sphere
+//    std::vector<Point2D>	disk_samples;			// sample points on a unit disk
+//    std::vector<Point3D> 	hemisphere_samples;		// sample points on a unit hemisphere
+//    std::vector<Point3D>    sphere_samples;			// sample points on a unit sphere
     unsigned long 			count;					// the current number of sample points used
     int 					jump;					// random index jump
+
+private:
+    Point2D next_sample2D(const std::vector<Point2D>& points);
+    Point3D next_sample3D(const std::vector<Point3D>& points);
+
 };
 
 #endif

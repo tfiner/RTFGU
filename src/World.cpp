@@ -106,20 +106,30 @@ void World::render_scene() {
     RGBColor	pixel_color;
     Ray			ray;
     ray.d = Vector3D(0, 0, -1);
+    const int   NUM_SAMPLES = vp.get_sampler()->get_num_samples();
 
     for (int r = 0; r < vp.vres; r++) {
         for (int c = 0; c <= vp.hres; c++) {
             pixel_color = background_color;
 
-            for ( int i = 0; i < vp.num_samples; i++ ) {
-                Point2D sp = sampler->sample_unit_square();
-                float nx = vp.s * (c - 0.5f * vp.hres + sp.x);
-                float ny = vp.s * (r - 0.5f * vp.vres + sp.y);
+            // Makes debugging easier, set num samples to 1 to
+            // get straight samples.
+            if ( 1 == NUM_SAMPLES ) {
+                float nx = vp.s * (c - 0.5f * vp.hres);
+                float ny = vp.s * (r - 0.5f * vp.vres);
                 ray.o = Point3D(nx, ny, ZW);
-                pixel_color += tracer->trace_ray(ray);
-            }
+                pixel_color = tracer->trace_ray(ray);
+            } else {
+                for ( int i = 0; i < NUM_SAMPLES; i++ ) {
+                    Point2D sp = sampler->sample_unit_square();
+                    float nx = vp.s * (c - 0.5f * vp.hres + sp.x);
+                    float ny = vp.s * (r - 0.5f * vp.vres + sp.y);
+                    ray.o = Point3D(nx, ny, ZW);
+                    pixel_color += tracer->trace_ray(ray);
+                }
 
-            pixel_color /= vp.num_samples;
+                pixel_color /= NUM_SAMPLES;
+            }
             display_pixel(r, c, pixel_color);
         }
     }

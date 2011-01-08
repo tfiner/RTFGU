@@ -10,6 +10,8 @@
 #include "Point3D.h"
 #include "Vector3D.h"
 #include "Pinhole.h"
+#include "Sampler.h"
+
 #include <math.h>
 
 // ----------------------------------------------------------------------------- default constructor
@@ -79,7 +81,9 @@ Pinhole::render_scene(const World& w) {
     Ray			ray;
     int 		depth = 0;
     Point2D 	pp;		// sample point on a pixel
-    int n = (int)sqrt((float)vp.num_samples);
+    const int   NUM_SAMPLES = vp.get_sampler()->get_num_samples();
+    int n = (int)sqrt((float)NUM_SAMPLES);
+//    int n = (int)sqrt((float)vp.num_samples);
 
     vp.s /= zoom;
     ray.o = eye;
@@ -96,7 +100,7 @@ Pinhole::render_scene(const World& w) {
                     L += w.get_tracer()->trace_ray(ray, depth);
                 }
 
-            L /= vp.num_samples;
+            L /= NUM_SAMPLES;
             L *= exposure_time;
             w.display_pixel(r, c, L);
         }
