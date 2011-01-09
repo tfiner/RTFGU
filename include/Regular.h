@@ -12,24 +12,19 @@
 
 class Regular: public Sampler {
 public:
-
-    Regular(void);
-
+    Regular();
     Regular(const int num);
-
     Regular(const Regular& u);
 
-    Regular&
-    operator= (const Regular& rhs);
+    Regular& operator= (const Regular& rhs);
 
-    virtual Regular*
-    clone(void) const;
+    virtual Regular* clone() const;
 
-    virtual
-    ~Regular(void);
+    virtual ~Regular();
 
-    virtual void
-    generate_samples(void);
+    virtual void generate_samples();
+
+    virtual Point2D sample_unit_square();
 };
 
 #endif

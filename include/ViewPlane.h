@@ -12,7 +12,6 @@ class ViewPlane {
 public:
     int 			hres;   					// horizontal image resolution
     int 			vres;   					// vertical image resolution
-    float			s;							// pixel size
     float			gamma;						// gamma correction factor
     float			inv_gamma;					// the inverse of the gamma correction factor
     bool			show_out_of_gamut;			// display red if RGBColor out of gamut
@@ -28,6 +27,7 @@ public:
 
     void set_vres(const int v_res);
 
+    float get_pixel_size() const { return s; }
     void set_pixel_size(const float size);
 
     void set_gamma(const float g);
@@ -39,7 +39,8 @@ public:
     SamplerPtr get_sampler();
 
 private:
-    SamplerPtr sampler_;
+    SamplerPtr  sampler_;
+    float	    s;							// pixel size
 };
 
 

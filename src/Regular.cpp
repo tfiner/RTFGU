@@ -7,29 +7,20 @@
 
 // ---------------------------------------------------------------- default constructor
 
-Regular::Regular(void)
-        : Sampler() {}
+Regular::Regular(): Sampler() {}
 
 
-// ---------------------------------------------------------------- constructor
-
-Regular::Regular(const int num)
-        : 	Sampler(num) {
+Regular::Regular(const int num):Sampler(num) {
     generate_samples();
 }
 
 
-// ---------------------------------------------------------------- copy constructor
-
-Regular::Regular(const Regular& u)
-        : Sampler(u) {
+Regular::Regular(const Regular& u): Sampler(u) {
     generate_samples();
 }
 
-// ---------------------------------------------------------------- assignment operator
 
-Regular&
-Regular::operator= (const Regular& rhs) {
+Regular& Regular::operator= (const Regular& rhs) {
     if (this == &rhs)
         return (*this);
 
@@ -38,26 +29,46 @@ Regular::operator= (const Regular& rhs) {
     return (*this);
 }
 
-// ---------------------------------------------------------------- clone
 
-Regular*
-Regular::clone(void) const {
+Regular* Regular::clone() const {
     return (new Regular(*this));
 }
 
-// ---------------------------------------------------------------- destructor
-
-Regular::~Regular(void) {}
+Regular::~Regular() {}
 
 
-// ---------------------------------------------------------------- generate_samples
+/*
+    0  0.5  1
+    ________
+    | . | . |
+    |---+---|
+    | . | . |
+    ---------
+    ____________
+    | . | . | . |
+    | . | . | . |
+    | . | . | . |
+    -------------
+*/
+void Regular::generate_samples() {
+    float n = sqrt((float)num_samples);
+    float inv_n = 1 / n;
+    float start = inv_n / 2.0f;
+    int in = (int) n;
 
-void
-Regular::generate_samples(void) {
-    int n = (int) sqrt((float)num_samples);
-
-    for (int j = 0; j < num_sets; j++)
-        for (int p = 0; p < n; p++)
-            for (int q = 0; q < n; q++)
-                samples.push_back(Point2D((q + 0.5) / n, (p + 0.5) / n));
+    for (int j = 0; j < num_sets; j++) {
+        for (int p = 0; p < in; p++) {
+            for (int q = 0; q < in; q++) {
+                samples.push_back(Point2D(start + q*inv_n, start + p*inv_n));
+            }
+        }
+    }
 }
+
+
+Point2D Regular::sample_unit_square() {
+    Point2D pt = samples[count];
+    count = (count + 1) % samples.size();
+    return pt;
+}
+

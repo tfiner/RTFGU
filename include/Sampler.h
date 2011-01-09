@@ -17,7 +17,6 @@
 
 class Sampler {
 public:
-
     Sampler();
     Sampler(const int num);
     Sampler(const int num, const int num_sets);
@@ -34,6 +33,7 @@ public:
     // generate sample patterns in a unit square
     virtual void generate_samples() = 0;
     int get_num_samples();
+    std::vector<Point2D> get_samples() const;
 
     void shuffle_x_coordinates();
     void shuffle_y_coordinates();
@@ -44,7 +44,8 @@ public:
 //    void map_samples_to_sphere();
 
     // the following functions are not const because they change count and jump
-    Point2D sample_unit_square();
+    virtual Point2D sample_unit_square();
+
 //    Point2D	sample_unit_disk();
     Point3D	sample_hemisphere();
 //    Point3D	sample_sphere();

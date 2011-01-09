@@ -107,6 +107,7 @@ void World::render_scene() {
     Ray			ray;
     ray.d = Vector3D(0, 0, -1);
     const int   NUM_SAMPLES = vp.get_sampler()->get_num_samples();
+    float       pix_size = vp.get_pixel_size();
 
     for (int r = 0; r < vp.vres; r++) {
         for (int c = 0; c <= vp.hres; c++) {
@@ -115,15 +116,15 @@ void World::render_scene() {
             // Makes debugging easier, set num samples to 1 to
             // get straight samples.
             if ( 1 == NUM_SAMPLES ) {
-                float nx = vp.s * (c - 0.5f * vp.hres);
-                float ny = vp.s * (r - 0.5f * vp.vres);
+                float nx = pix_size * (c - 0.5f * vp.hres);
+                float ny = pix_size * (r - 0.5f * vp.vres);
                 ray.o = Point3D(nx, ny, ZW);
                 pixel_color = tracer->trace_ray(ray);
             } else {
                 for ( int i = 0; i < NUM_SAMPLES; i++ ) {
                     Point2D sp = sampler->sample_unit_square();
-                    float nx = vp.s * (c - 0.5f * vp.hres + sp.x);
-                    float ny = vp.s * (r - 0.5f * vp.vres + sp.y);
+                    float nx = pix_size * (c - 0.5f * vp.hres + sp.x);
+                    float ny = pix_size * (r - 0.5f * vp.vres + sp.y);
                     ray.o = Point3D(nx, ny, ZW);
                     pixel_color += tracer->trace_ray(ray);
                 }

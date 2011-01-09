@@ -83,6 +83,10 @@ int Sampler::get_num_samples() {
     return num_samples;
 }
 
+std::vector<Point2D> Sampler::get_samples() const {
+    return samples;
+}
+
 
 // shuffle the x coordinates of the points within each set
 void Sampler::shuffle_x_coordinates() {
