@@ -1,3 +1,5 @@
+#if 0 // pending delete.
+
 // 	Copyright (C) Kevin Suffern 2000-2007.
 //	This C++ code is for non-commercial purposes only.
 //	This C++ code is licensed under the GNU General Public License Version 2.
@@ -288,3 +290,4 @@ Point3D Sampler::next_sample3D(const std::vector<Point3D>& samples3D) {
 //    return(samples[count++ % num_samples]);
 //}
 
+#endif//

@@ -17,36 +17,24 @@ public:
     bool			show_out_of_gamut;			// display red if RGBColor out of gamut
 
 
-
-public:
-
-    ViewPlane();   								// default Constructor
-    ~ViewPlane();   							// destructor
+    ViewPlane();
 
     void set_hres(const int h_res);
-
     void set_vres(const int v_res);
 
-    float get_pixel_size() const { return s; }
+    float get_pixel_size() const { return pixel_size_; }
     void set_pixel_size(const float size);
 
     void set_gamma(const float g);
-
     void set_gamut_display(const bool show);
-
     void set_sampler( SamplerPtr sampler );
-
     SamplerPtr get_sampler();
 
 private:
     SamplerPtr  sampler_;
-    float	    s;							// pixel size
+    float	    pixel_size_;
 };
 
-
-
-
-// ------------------------------------------------------------------------------ set_hres
 
 inline void
 ViewPlane::set_hres(const int h_res) {
@@ -54,44 +42,25 @@ ViewPlane::set_hres(const int h_res) {
 }
 
 
-// ------------------------------------------------------------------------------ set_vres
-
-inline void
-ViewPlane::set_vres(const int v_res) {
+inline void ViewPlane::set_vres(const int v_res) {
     vres = v_res;
 }
 
 
-// ------------------------------------------------------------------------------ set_pixel_size
-
-inline void
-ViewPlane::set_pixel_size(const float size) {
-    s = size;
+inline void ViewPlane::set_pixel_size(const float size) {
+    pixel_size_ = size;
 }
 
 
-// ------------------------------------------------------------------------------ set_gamma
-
-inline void
-ViewPlane::set_gamma(const float g) {
+inline void ViewPlane::set_gamma(const float g) {
     gamma = g;
     inv_gamma = 1.0 / gamma;
 }
 
 
-// ------------------------------------------------------------------------------ set_gamut_display
-
-inline void
-ViewPlane::set_gamut_display(const bool show) {
+inline void ViewPlane::set_gamut_display(const bool show) {
     show_out_of_gamut = show;
 }
-
-
-
-//inline void
-//ViewPlane::set_samples(const int n) {
-//    num_samples = n;
-//}
 
 
 inline void ViewPlane::set_sampler( SamplerPtr sampler ) {

@@ -37,7 +37,6 @@
 
 // build functions
 
-#include "BuildShadedObjects.cpp"
 
 #include "IRenderer.h"
 
