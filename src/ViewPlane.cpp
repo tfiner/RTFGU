@@ -2,7 +2,7 @@
 
 #include "ViewPlane.h"
 #include "Sampler.h"
-#include "Regular.h"
+#include "Regular2D.h"
 
 
 ViewPlane::ViewPlane(): hres(400), vres(400),

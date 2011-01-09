@@ -3,7 +3,7 @@
 //	This C++ code is licensed under the GNU General Public License Version 2.
 //	See the file COPYING.txt for the full license.
 
-#include "Regular.h"
+#include "Regular2D.h"
 
 #include <cassert>
 #include <cmath>
@@ -21,7 +21,7 @@ Regular2D::Regular2D(int bundleSize) : bundleSize_(bundleSize) {}
 Regular2D::~Regular2D() {}
 
 
-const SampleGenerator2D::SampleBundle& Regular2D::get_next() {
+const SampleBundle2D& Regular2D::get_next() {
     // Lazily create samples.
     if (samples_.empty())
         generate_samples();

@@ -11,13 +11,13 @@
 #include "Sampler.h"
 #include "Point2D.h"
 
-class Regular2D : public SampleGenerator<Point2D> {
+class Regular2D : public SampleGenerator2D {
 public:
     Regular2D();
     Regular2D(int bundleSize);
     ~Regular2D();
 
-    const SampleBundle& get_next();
+    const SampleBundle2D& get_next();
 
     void set_bundle_size(size_t samples);
     int get_bundle_size() const;
@@ -27,9 +27,6 @@ private:
     SampleBundle samples_;
     void generate_samples();
 };
-
-
-
 
 
 #endif
