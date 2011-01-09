@@ -90,27 +90,16 @@ void World::render_scene() {
         for (int c = 0; c <= vp.hres; c++) {
             pixel_color = background_color;
 
-            // Makes debugging easier, set num samples to 1 to
-            // get straight samples.
-            if ( 1 == NUM_SAMPLES ) {
-                float nx = pix_size * (c - 0.5f * vp.hres);
-                float ny = pix_size * (r - 0.5f * vp.vres);
+            const SampleBundle2D& samples = sampler->get_next();
+            for ( SampleBundle2D::const_iterator sp = samples.begin();
+                    sp != samples.end(); ++sp ) {
+                float nx = pix_size * (c - 0.5f * vp.hres + sp->x);
+                float ny = pix_size * (r - 0.5f * vp.vres + sp->y);
                 ray.o = Point3D(nx, ny, ZW);
-                pixel_color = tracer->trace_ray(ray);
-            } else {
-                const SampleGenerator2D::SampleBundle& samples = sampler->get_next();
-//                for ( int i = 0; i < NUM_SAMPLES; i++ ) {
-                for ( SampleGenerator2D::SampleBundle::const_iterator sp = samples.begin();
-                        sp != samples.end(); ++sp ) {
-//                    Point2D sp = sampler->sample_unit_square();
-                    float nx = pix_size * (c - 0.5f * vp.hres + sp->x);
-                    float ny = pix_size * (r - 0.5f * vp.vres + sp->y);
-                    ray.o = Point3D(nx, ny, ZW);
-                    pixel_color += tracer->trace_ray(ray);
-                }
-
-                pixel_color /= NUM_SAMPLES;
+                pixel_color += tracer->trace_ray(ray);
             }
+
+            pixel_color /= NUM_SAMPLES;
             display_pixel(r, c, pixel_color);
         }
     }
