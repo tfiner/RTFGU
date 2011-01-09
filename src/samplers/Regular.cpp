@@ -5,36 +5,43 @@
 
 #include "Regular.h"
 
-// ---------------------------------------------------------------- default constructor
+#include <cassert>
+#include <cmath>
 
-Regular::Regular(): Sampler() {}
 
+namespace {
 
-Regular::Regular(const int num):Sampler(num) {
-    generate_samples();
+    const int DEFAULT_BUNDLE_SIZE = 4;
+
 }
 
 
-Regular::Regular(const Regular& u): Sampler(u) {
-    generate_samples();
+Regular2D::Regular2D() : bundleSize_(DEFAULT_BUNDLE_SIZE) {}
+Regular2D::Regular2D(int bundleSize) : bundleSize_(bundleSize) {}
+Regular2D::~Regular2D() {}
+
+
+const SampleGenerator2D::SampleBundle& Regular2D::get_next() {
+    // Lazily create samples.
+    if (samples_.empty())
+        generate_samples();
+
+    return samples_;
 }
 
 
-Regular& Regular::operator= (const Regular& rhs) {
-    if (this == &rhs)
-        return (*this);
-
-    Sampler::operator= (rhs);
-
-    return (*this);
+void Regular2D::set_bundle_size(size_t numSamples) {
+    double intPart = 0.0;
+    double fracPart = modf((double)numSamples, &intPart);
+    assert( 0.0 == fracPart && "The number of samples in a bundle must be a square." );
+    bundleSize_ = numSamples;
+    samples_.clear(); // force a new generation next time get_next is called.
 }
 
 
-Regular* Regular::clone() const {
-    return (new Regular(*this));
+int Regular2D::get_bundle_size() const {
+    return bundleSize_;
 }
-
-Regular::~Regular() {}
 
 
 /*
@@ -50,25 +57,15 @@ Regular::~Regular() {}
     | . | . | . |
     -------------
 */
-void Regular::generate_samples() {
-    float n = sqrt((float)num_samples);
+void Regular2D::generate_samples() {
+    float n = sqrt((float)bundleSize_);
     float inv_n = 1 / n;
     float start = inv_n / 2.0f;
     int in = (int) n;
 
-    for (int j = 0; j < num_sets; j++) {
-        for (int p = 0; p < in; p++) {
-            for (int q = 0; q < in; q++) {
-                samples.push_back(Point2D(start + q*inv_n, start + p*inv_n));
-            }
+    for (int p = 0; p < in; p++) {
+        for (int q = 0; q < in; q++) {
+            samples_.push_back(Point2D(start + q*inv_n, start + p*inv_n));
         }
     }
 }
-
-
-Point2D Regular::sample_unit_square() {
-    Point2D pt = samples[count];
-    count = (count + 1) % samples.size();
-    return pt;
-}
-

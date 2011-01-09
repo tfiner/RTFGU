@@ -4,39 +4,17 @@
 #include "World.h"
 #include "Constants.h"
 
-// geometric objects
-
-#include "Plane.h"
-#include "Sphere.h"
-
-// tracers
-
-#include "SingleSphere.h"
-#include "MultipleObjects.h"
-#include "RayCast.h"
-
-// cameras
-
-#include "Pinhole.h"
-
-// lights
-
-#include "Directional.h"
-
-// materials
-
-#include "Matte.h"
 
 // utilities
 
 #include "Vector3D.h"
 #include "Point3D.h"
+#include "Point2D.h"
 #include "Normal.h"
 #include "ShadeRec.h"
 #include "Maths.h"
 
 // build functions
-
 
 #include "IRenderer.h"
 
@@ -105,7 +83,7 @@ void World::render_scene() {
     RGBColor	pixel_color;
     Ray			ray;
     ray.d = Vector3D(0, 0, -1);
-    const int   NUM_SAMPLES = vp.get_sampler()->get_num_samples();
+    const int   NUM_SAMPLES = sampler->get_bundle_size();
     float       pix_size = vp.get_pixel_size();
 
     for (int r = 0; r < vp.vres; r++) {
@@ -120,10 +98,13 @@ void World::render_scene() {
                 ray.o = Point3D(nx, ny, ZW);
                 pixel_color = tracer->trace_ray(ray);
             } else {
-                for ( int i = 0; i < NUM_SAMPLES; i++ ) {
-                    Point2D sp = sampler->sample_unit_square();
-                    float nx = pix_size * (c - 0.5f * vp.hres + sp.x);
-                    float ny = pix_size * (r - 0.5f * vp.vres + sp.y);
+                const SampleGenerator2D::SampleBundle& samples = sampler->get_next();
+//                for ( int i = 0; i < NUM_SAMPLES; i++ ) {
+                for ( SampleGenerator2D::SampleBundle::const_iterator sp = samples.begin();
+                        sp != samples.end(); ++sp ) {
+//                    Point2D sp = sampler->sample_unit_square();
+                    float nx = pix_size * (c - 0.5f * vp.hres + sp->x);
+                    float ny = pix_size * (r - 0.5f * vp.vres + sp->y);
                     ray.o = Point3D(nx, ny, ZW);
                     pixel_color += tracer->trace_ray(ray);
                 }

@@ -28,9 +28,13 @@ public:
     virtual const SampleBundle& get_next() = 0;
 
 
-    virtual void set_unit_size(size_t samples) = 0;
-    virtual int get_unit_size() const = 0;
+    virtual void set_bundle_size(size_t samples) = 0;
+    virtual int get_bundle_size() const = 0;
 };
+
+class Point2D;
+typedef SampleGenerator<Point2D> SampleGenerator2D;
+typedef SampleGenerator2D::SampleBundle SampleBundle2D;
 
 #endif
 

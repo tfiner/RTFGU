@@ -1,11 +1,13 @@
 #ifndef __VIEW_PLANE__
 #define __VIEW_PLANE__
 
+#include "Sampler.h"
+
+
 #include <boost/shared_ptr.hpp>
 
 
-class Sampler;
-typedef boost::shared_ptr<Sampler> SamplerPtr;
+typedef boost::shared_ptr< SampleGenerator2D > SamplerPtr;
 
 
 class ViewPlane {

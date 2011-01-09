@@ -13,43 +13,31 @@
 class Rectangle: public GeometricObject {
 public:
 
-    Rectangle(void);
-
+    Rectangle();
     Rectangle(const Point3D& _p0, const Vector3D& _a, const Vector3D& _b);
-
     Rectangle(const Point3D& _p0, const Vector3D& _a, const Vector3D& _b, const Normal& n);
 
-    virtual Rectangle*
-    clone(void) const;
+    virtual Rectangle* clone() const;
 
     Rectangle(const Rectangle& r);
 
-    virtual
-    ~Rectangle(void);
+    virtual ~Rectangle();
 
-    Rectangle&
-    operator= (const Rectangle& rhs);
+    Rectangle& operator= (const Rectangle& rhs);
 
-    BBox
-    get_bounding_box(void);
+    BBox get_bounding_box();
 
-    virtual bool
-    hit(const Ray& ray, double& t, ShadeRec& s) const;
+    virtual bool hit(const Ray& ray, double& t, ShadeRec& s) const;
 
 
     // the following functions are used when the rectangle is a light source
+    virtual void set_sampler(Sampler* sampler);
 
-    virtual void
-    set_sampler(Sampler* sampler);
+    virtual Point3D sample();
 
-    virtual Point3D
-    sample(void);
+    virtual Normal get_normal(const Point3D& p);
 
-    virtual Normal
-    get_normal(const Point3D& p);
-
-    virtual float
-    pdf(ShadeRec& sr);
+    virtual float pdf(ShadeRec& sr);
 
 private:
 

@@ -1,3 +1,4 @@
+#error "Don't use me yet."
 #ifndef __BRDF__
 #define __BRDF__
 

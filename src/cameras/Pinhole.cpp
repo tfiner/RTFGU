@@ -81,7 +81,7 @@ Pinhole::render_scene(const World& w) {
     Ray			ray;
     int 		depth = 0;
     Point2D 	pp;		// sample point on a pixel
-    const int   NUM_SAMPLES = vp.get_sampler()->get_num_samples();
+    const int   NUM_SAMPLES = vp.get_sampler()->get_bundle_size();
     int n = (int)sqrt((float)NUM_SAMPLES);
 //    int n = (int)sqrt((float)vp.num_samples);
 
