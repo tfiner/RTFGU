@@ -11,7 +11,7 @@
 #include "GeometricObject.h"
 
 
-GeometricObject::GeometricObject(): color(black) /*, shadows(true) */ {}
+GeometricObject::GeometricObject(): color(BLACK) /*, shadows(true) */ {}
 
 
 GeometricObject::GeometricObject (const GeometricObject& object)

@@ -4,16 +4,11 @@
 //	See the file COPYING.txt for the full license.
 
 #include "Regular2D.h"
+#include "Constants.h"
+#include "Maths.h"
 
 #include <cassert>
 #include <cmath>
-
-
-namespace {
-
-    const int DEFAULT_BUNDLE_SIZE = 4;
-
-}
 
 
 Regular2D::Regular2D() : bundleSize_(DEFAULT_BUNDLE_SIZE) {}
@@ -30,11 +25,9 @@ const SampleBundle2D& Regular2D::get_next() {
 }
 
 
-void Regular2D::set_bundle_size(size_t numSamples) {
-    double intPart = 0.0;
-    double fracPart = modf((double)numSamples, &intPart);
-    assert( 0.0 == fracPart && "The number of samples in a bundle must be a square." );
-    bundleSize_ = numSamples;
+void Regular2D::set_bundle_size(int bundleSize) {
+    assert( is_square(bundleSize) && "The number of samples in a bundle must be a square." );
+    bundleSize_ = bundleSize;
     samples_.clear(); // force a new generation next time get_next is called.
 }
 

@@ -1,7 +1,7 @@
 // This file contains the definition the ViewPlane class
 
 #include "ViewPlane.h"
-#include "Sampler.h"
+#include "SampleGenerator.h"
 #include "Regular2D.h"
 
 

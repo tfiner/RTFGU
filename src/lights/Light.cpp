@@ -39,7 +39,7 @@ Light::~Light(void) {}
 
 RGBColor
 Light::L(ShadeRec& s) {
-    return (black);
+    return BLACK;
 }
 
 

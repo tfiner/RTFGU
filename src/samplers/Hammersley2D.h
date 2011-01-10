@@ -1,5 +1,5 @@
-#ifndef __REGULAR__
-#define __REGULAR__
+#ifndef __HAMMERSLEY__
+#define __HAMMERSLEY__
 
 
 // 	Copyright (C) Kevin Suffern 2000-2007.
@@ -9,24 +9,23 @@
 
 
 #include "SampleGenerator.h"
-#include "Point2D.h"
 
-class Regular2D : public SampleGenerator2D {
+class Hammersley2D: public SampleGenerator2D {
 public:
-    Regular2D();
-    Regular2D(int bundleSize);
-    ~Regular2D();
+    Hammersley2D();
+    Hammersley2D(int num);
 
-    const SampleBundle2D& get_next();
-    void set_bundle_size(int bundleSize);
-    int get_bundle_size() const;
+    virtual const SampleBundle2D& get_next();
+
+    virtual void set_bundle_size(int bundleSize);
+    virtual int get_bundle_size() const;
 
 private:
     int bundleSize_;
-    SampleBundle samples_;
+    SampleBundle2D samples_;
+
     void generate_samples();
 };
-
 
 #endif
 

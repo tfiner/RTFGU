@@ -1,5 +1,5 @@
-#ifndef __REGULAR__
-#define __REGULAR__
+#ifndef __PURE_RANDOM__
+#define __PURE_RANDOM__
 
 
 // 	Copyright (C) Kevin Suffern 2000-2007.
@@ -9,13 +9,12 @@
 
 
 #include "SampleGenerator.h"
-#include "Point2D.h"
 
-class Regular2D : public SampleGenerator2D {
+class PureRandom: public SampleGenerator2D {
 public:
-    Regular2D();
-    Regular2D(int bundleSize);
-    ~Regular2D();
+    PureRandom();
+    PureRandom(int bundleSize);
+    ~PureRandom();
 
     const SampleBundle2D& get_next();
     void set_bundle_size(int bundleSize);
@@ -26,7 +25,6 @@ private:
     SampleBundle samples_;
     void generate_samples();
 };
-
 
 #endif
 

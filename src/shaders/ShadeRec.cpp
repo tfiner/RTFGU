@@ -24,7 +24,7 @@ ShadeRec::ShadeRec(const World& wr)
         normal(),
         ray(),
         depth(0),
-        color(black),
+        color(BLACK),
         t(0.0),
         u(0.0),
         v(0.0),

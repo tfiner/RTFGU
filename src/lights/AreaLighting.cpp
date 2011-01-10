@@ -20,7 +20,7 @@ AreaLighting::~AreaLighting() {}
 
 RGBColor
 AreaLighting::trace_ray(const Ray ray, const int depth) const {
-    return black;
+    return BLACK;
     /*
     	if (depth > world_ptr->vp.max_depth)
     		return (black);

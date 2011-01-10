@@ -35,7 +35,7 @@ namespace {
 // and set its parameters
 
 World::World() : renderer(new NullRenderer),
-        background_color(black),
+        background_color(BLACK),
         ambient_ptr(new Ambient),
         camera_ptr(NULL) {}
 

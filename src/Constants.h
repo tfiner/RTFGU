@@ -20,10 +20,15 @@ const double 	invTWO_PI 	= 0.1591549430918953358;
 const double 	kEpsilon 	= 0.0001;
 const double	kHugeValue	= 1.0E10;
 
-const RGBColor	black(0.0);
-const RGBColor	white(1.0);
-const RGBColor	red(1.0, 0.0, 0.0);
+const RGBColor	BLACK(0.0);
+const RGBColor	WHITE(1.0);
+const RGBColor	RED(1.0, 0.0, 0.0);
+const RGBColor  GREEN(0.0,1.0,0.0);
+const RGBColor  YELLOW(1.0,1.0,0.0);
+
 
 const float 	invRAND_MAX = 1.0 / (float)RAND_MAX;
+
+const int       DEFAULT_BUNDLE_SIZE = 4;
 
 #endif

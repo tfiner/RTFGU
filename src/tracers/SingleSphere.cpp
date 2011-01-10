@@ -19,9 +19,9 @@ RGBColor SingleSphere::trace_ray(const Ray& ray) const {
     double    	t;  				// not used
 
     if (world_ptr->get_sphere().hit(ray, t, sr))
-        return (red);
-    else
-        return (black);
+        return RED;
+
+    return BLACK;
 }
 
 

@@ -1,7 +1,7 @@
 #ifndef __VIEW_PLANE__
 #define __VIEW_PLANE__
 
-#include "Sampler.h"
+#include "SampleGenerator.h"
 
 
 #include <boost/shared_ptr.hpp>

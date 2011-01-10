@@ -87,7 +87,7 @@ AreaLight::get_direction(ShadeRec& sr) {
 
 RGBColor
 AreaLight::L(ShadeRec& sr) {
-    return black;
+    return BLACK;
     /*
     	float ndotd = -light_normal * wi;
     	if (ndotd > 0.0)

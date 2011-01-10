@@ -144,16 +144,10 @@
 		<Unit filename="src/math/Vector3D.cpp" />
 		<Unit filename="src/math/Vector3D.h" />
 		<Unit filename="src/ply.h" />
-		<Unit filename="src/samplers/Hammersley.cpp">
-			<Option compile="0" />
-			<Option link="0" />
-		</Unit>
-		<Unit filename="src/samplers/Hammersley.h" />
-		<Unit filename="src/samplers/Jittered.cpp">
-			<Option compile="0" />
-			<Option link="0" />
-		</Unit>
-		<Unit filename="src/samplers/Jittered.h" />
+		<Unit filename="src/samplers/Hammersley2D.cpp" />
+		<Unit filename="src/samplers/Hammersley2D.h" />
+		<Unit filename="src/samplers/Jittered2D.cpp" />
+		<Unit filename="src/samplers/Jittered2D.h" />
 		<Unit filename="src/samplers/MultiJittered.cpp">
 			<Option compile="0" />
 			<Option link="0" />
@@ -164,18 +158,11 @@
 			<Option link="0" />
 		</Unit>
 		<Unit filename="src/samplers/NRooks.h" />
-		<Unit filename="src/samplers/PureRandom.cpp">
-			<Option compile="0" />
-			<Option link="0" />
-		</Unit>
-		<Unit filename="src/samplers/PureRandom.h" />
+		<Unit filename="src/samplers/PureRandom2D.cpp" />
+		<Unit filename="src/samplers/PureRandom2D.h" />
 		<Unit filename="src/samplers/Regular2D.cpp" />
 		<Unit filename="src/samplers/Regular2D.h" />
-		<Unit filename="src/samplers/Sampler.cpp">
-			<Option compile="0" />
-			<Option link="0" />
-		</Unit>
-		<Unit filename="src/samplers/Sampler.h" />
+		<Unit filename="src/samplers/SampleGenerator.h" />
 		<Unit filename="src/shaders/BRDF.cpp">
 			<Option compile="0" />
 			<Option link="0" />

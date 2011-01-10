@@ -28,7 +28,7 @@ public:
     virtual const SampleBundle& get_next() = 0;
 
 
-    virtual void set_bundle_size(size_t samples) = 0;
+    virtual void set_bundle_size(int bundleSize) = 0;
     virtual int get_bundle_size() const = 0;
 };
 

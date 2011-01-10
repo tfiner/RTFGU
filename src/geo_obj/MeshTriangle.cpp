@@ -9,6 +9,10 @@
 #include "MeshTriangle.h"
 #include "Maths.h"
 
+#include <algorithm> // std::min  std::max
+
+using std::min;
+using std::max;
 
 // ----------------------------------------------------------------  default constructor
 
