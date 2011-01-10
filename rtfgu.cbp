@@ -44,6 +44,7 @@
 			<Add directory="src/samplers" />
 			<Add directory="src/shaders" />
 			<Add directory="src/tracers" />
+			<Add directory="src/util" />
 		</Compiler>
 		<Unit filename="src/Constants.h" />
 		<Unit filename="src/IBuilder.h" />
@@ -148,16 +149,10 @@
 		<Unit filename="src/samplers/Hammersley2D.h" />
 		<Unit filename="src/samplers/Jittered2D.cpp" />
 		<Unit filename="src/samplers/Jittered2D.h" />
-		<Unit filename="src/samplers/MultiJittered.cpp">
-			<Option compile="0" />
-			<Option link="0" />
-		</Unit>
-		<Unit filename="src/samplers/MultiJittered.h" />
-		<Unit filename="src/samplers/NRooks.cpp">
-			<Option compile="0" />
-			<Option link="0" />
-		</Unit>
-		<Unit filename="src/samplers/NRooks.h" />
+		<Unit filename="src/samplers/MultiJittered2D.cpp" />
+		<Unit filename="src/samplers/MultiJittered2D.h" />
+		<Unit filename="src/samplers/NRooks2D.cpp" />
+		<Unit filename="src/samplers/NRooks2D.h" />
 		<Unit filename="src/samplers/PureRandom2D.cpp" />
 		<Unit filename="src/samplers/PureRandom2D.h" />
 		<Unit filename="src/samplers/Regular2D.cpp" />
@@ -200,6 +195,8 @@
 		<Unit filename="src/tracers/Tracer.h" />
 		<Unit filename="src/tracers/Whitted.cpp" />
 		<Unit filename="src/tracers/Whitted.h" />
+		<Unit filename="src/util/shuffle.cpp" />
+		<Unit filename="src/util/shuffle.h" />
 		<Extensions>
 			<envvars />
 			<code_completion />

@@ -1,5 +1,5 @@
-#ifndef __PURE_RANDOM__
-#define __PURE_RANDOM__
+#ifndef __N_ROOKS__
+#define __N_ROOKS__
 
 
 // 	Copyright (C) Kevin Suffern 2000-2007.
@@ -10,11 +10,10 @@
 
 #include "SampleGenerator.h"
 
-class PureRandom : public SampleGenerator2D {
+class NRooks2D: public SampleGenerator2D {
 public:
-    PureRandom();
-    PureRandom(int bundleSize);
-    ~PureRandom();
+    NRooks2D(void);
+    NRooks2D(const int num_samples);
 
     const SampleBundle2D& get_next();
     void set_bundle_size(int bundleSize);
@@ -22,7 +21,7 @@ public:
 
 private:
     int bundleSize_;
-    SampleBundle samples_;
+    SampleBundle2D samples_;
     void generate_samples();
 };
 
