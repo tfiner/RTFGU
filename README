@@ -7,6 +7,11 @@ and decided to shore up the design to make bugs less likely in the future.
 
 I split the code into a static raytracer library and the UI application.  This is the raytracer library.
 
+BUILDING PREQUISITES
+    CodeBlocks, a free C/C++ IDE.
+    Boost, high quality C++ libraries.
+
+
 STATUS
 I'm on Chapter 5 right now, but have gone back to 4 to fix all the samplers.
 
@@ -64,3 +69,4 @@ Changes
 
 TODO
     I'm still adding back in other samplers and changing raw pointers, etc.
+    CMake build.
