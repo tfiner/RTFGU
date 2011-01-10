@@ -1,0 +1,66 @@
+This is a fork of the source code for the book: "Ray Tracing From the Ground Up" by Kevin Suffern.
+
+The source code was taken from http://www.raytracegroundup.com/ and is GPL.  See License.txt for details.
+
+I decided to host my changes to save other people time.  I found a couple of bugs in the Sampler section
+and decided to shore up the design to make bugs less likely in the future.
+
+I split the code into a static raytracer library and the UI application.  This is the raytracer library.
+
+STATUS
+I'm on Chapter 5 right now, but have gone back to 4 to fix all the samplers.
+
+New Features
+    * Memory Usage
+        Switched from bald pointers to boost shared pointers.
+        This makes the code vastly simpler, there's no more need for
+        assignment operators, copy ctors, clones, and
+        a whole host of segfaults disappeared.  =D
+
+        Not all the code has been refactored to use this idiom (yet), but I
+        will make this change as I work my way through the book.
+
+    * Regular Sampler Bugs
+        There were a two bugs in the Regular sampler that left noise in the 3-1 sphere sample
+        rendering.  The generate_samples routine wasn't generating the correct samples, and the
+        unti_square routine wasn't returning the right samples.  i fixed both and made the
+        archicture simpler.
+
+    * Sampler Architecture
+        Sampler architecture completely redone into a simpler abstract base class.
+        It occurred to me that the samplers are really sample generators.  As an implementation
+        detail, some of the samplers cache their data, others do not.  The old design stored
+        too much data in the base class resulting in a lot of extra code that leaked abstractions.
+        (The base class had functions that only worked when used by certain subclasses).
+        The solution was to move all the data down into the appropriate subclasses and make the
+        base class abstract.
+
+        2D and 3D point generation is handled by template in the base class SampleGenerator.
+        Typedefs make their usage much easier.
+
+        I intend to also have subclasses handle the distinction of 2D (square & circle).
+
+Changes
+    Library / UI Split
+        The source code is split into two projects;
+        one that contains the raytracer built as a static library,
+        the other mostly contains the UI.
+
+    Style
+        Astyle, style K&R.
+        Unecessary code deleted (notably ctors, dtors copy, and
+            assignment operators that are the same as the compiler generated ones).
+        Other Nits:
+            // ---- comments with no point are deleted.
+            return (value) -> return value;
+            void func(void) -> void func()
+            void
+            func()          -> void func()
+            for(...)
+                for(...)    ->  for () {
+                                    for () {
+                                    }
+                                }
+
+TODO
+    I'm still adding back in other samplers and changing raw pointers, etc.
